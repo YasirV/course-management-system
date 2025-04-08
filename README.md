@@ -1,4 +1,5 @@
 Django Course Registration System
+
 A simple course registration system built with Django and PostgreSQL.
 
 Features:
@@ -9,7 +10,7 @@ PostgreSQL database integration
 
 Installation
 Clone the repository:
-Copygit clone https://github.com/your-username/django-course-registration.git
+git clone https://github.com/your-username/django-course-registration.git
 cd django-course-registration
 
 Create a virtual environment and activate it:
