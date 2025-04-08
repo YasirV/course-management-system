@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Faculty Dashboard - Course Registration System{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h3 class="card-title mb-0">Faculty Dashboard</h3>
+            </div>
+            <div class="card-body">
+                <h4>Welcome, {{ faculty.name }}!</h4>
+                <p><strong>Faculty ID:</strong> {{ faculty.faculty_id }}</p>
+                <p><strong>Department:</strong> {{ faculty.department }}</p>
+                <p><strong>Email:</strong> {{ faculty.user.email }}</p>
+                
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start mt-3">
+                    <a href="{% url 'create_course' %}" class="btn btn-success">Offer New Course</a>
+                    <a href="{% url 'course_list' %}" class="btn btn-primary">View All Courses</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h4 class="card-title mb-0">My Offered Courses</h4>
+            </div>
+            <div class="card-body">
+                {% if courses %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Course Code</th>
+                                    <th>Course Name</th>
+                                    <th>Registered Students</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for course in courses %}
+                                    <tr>
+                                        <td>{{ course.course_code }}</td>
+                                        <td>{{ course.course_name }}</td>
+                                        <td>{{ course.registrations.count }}</td>
+                                        <td>
+                                            <a href="{% url 'edit_course' course.id %}" class="btn btn-warning btn-sm">Edit</a>
+                                            <a href="{% url 'delete_course' course.id %}" class="btn btn-danger btn-sm">Delete</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="alert alert-info">
+                        You haven't offered any courses yet. <a href="{% url 'create_course' %}">Create your first course</a>.
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

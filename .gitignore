@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+env/
+ENV/
+*.env
+*.venv
+*.virtualenv
+.idea/
+.vscode/
+
+# Django migrations
+**/migrations/
+!*/migrations/__init__.py
+
+# SQLite DB or other local DBs
+*.sqlite3
+
+# Django secret keys or env vars
+.env
+*.env
+
+# VSCode settings
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Compiled files
+*.log
+*.pot
+*.mo
+
+# Static/media files (optional if you use collectstatic locally)
+staticfiles/
+media/
+
+# Pytest and coverage
+htmlcov/
+.coverage
+.cache
+.pytest_cache/

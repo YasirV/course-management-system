@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Student Dashboard - Course Registration System{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h3 class="card-title mb-0">Student Dashboard</h3>
+            </div>
+            <div class="card-body">
+                <h4>Welcome, {{ student.name }}!</h4>
+                <p><strong>Student ID:</strong> {{ student.student_id }}</p>
+                <p><strong>Email:</strong> {{ student.user.email }}</p>
+                
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start mt-3">
+                    <a href="{% url 'course_list' %}" class="btn btn-primary">View All Courses</a>
+                    <a href="{% url 'register_course' %}" class="btn btn-success">Register for Course</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h4 class="card-title mb-0">My Registered Courses</h4>
+            </div>
+            <div class="card-body">
+                {% if registrations %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Course Code</th>
+                                    <th>Course Name</th>
+                                    <th>Offered By</th>
+                                    <th>Registration Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for registration in registrations %}
+                                    <tr>
+                                        <td>{{ registration.course.course_code }}</td>
+                                        <td>{{ registration.course.course_name }}</td>
+                                        <td>{{ registration.course.offered_by.name }}</td>
+                                        <td>{{ registration.registration_date|date:"M d, Y" }}</td>
+                                        <td>
+                                            <a href="#" class="btn btn-danger btn-sm">Drop Course</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="alert alert-info">
+                        You haven't registered for any courses yet. <a href="{% url 'register_course' %}">Register now</a>.
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
